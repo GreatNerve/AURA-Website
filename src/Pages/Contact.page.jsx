@@ -26,8 +26,9 @@ export default function ContactPage() {
         <h1 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-blue-400 to-cyan-300 bg-clip-text text-transparent">{contactData.title}</h1>
         <p className="text-lg text-gray-300 max-w-3xl mx-auto px-4">{contactData.subtitle}</p>
       </div>
-
-      <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-10 bg-[#172a46] p-8 rounded-lg shadow-2xl animate-fade-in" style={{ animationDelay: '300ms' }}>
+      
+      {/* Main container no longer has the border */}
+      <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-10 bg-[#172a46] p-8 rounded-xl shadow-2xl animate-fade-in" style={{ animationDelay: '300ms' }}>
         {/* Left Side: Contact Info */}
         <div className="flex flex-col gap-8">
           <h2 className="text-2xl font-semibold">{contactData.contactInfo.title}</h2>
@@ -73,8 +74,8 @@ export default function ContactPage() {
           </div>
         </div>
 
-        {/* Right Side: Contact Form */}
-        <div className="bg-[#0f1b34] p-8 rounded-lg">
+        {/* Right Side: Contact Form with the animated border */}
+        <div className="animated-gradient-border rounded-xl bg-[#0f1b34] p-8">
           <h2 className="text-2xl font-semibold mb-6">{contactData.form.title}</h2>
           <form className="space-y-6">
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
@@ -106,6 +107,7 @@ export default function ContactPage() {
           </form>
         </div>
       </div>
+
     </div>
   );
 }

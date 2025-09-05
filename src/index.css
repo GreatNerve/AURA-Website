@@ -125,6 +125,33 @@
     animation: fadeIn 0.8s ease-out forwards;
     opacity: 0;
   }
+
+  /* Added styles for animated gradient border */
+  @property --gradient-angle {
+    syntax: "<angle>";
+    initial-value: 0deg;
+    inherits: false;
+  }
+
+  .animated-gradient-border {
+    position: relative;
+  }
+
+  .animated-gradient-border::before {
+    content: '';
+    position: absolute;
+    inset: -2px; /* Controls border thickness */
+    background: conic-gradient(
+      from var(--gradient-angle),
+      #1e40af, /* blue-800 */
+      #06b6d4, /* cyan-500 */
+      #7c3aed, /* violet-600 */
+      #1e40af
+    );
+    border-radius: inherit; /* Inherits the parent's border-radius */
+    animation: gradient-rotate 6s linear infinite;
+    z-index: -1;
+  }
 }
 
 @keyframes fadeIn {
@@ -137,3 +164,10 @@
     transform: translateY(0);
   }
 }
+
+@keyframes gradient-rotate {
+  to {
+    --gradient-angle: 360deg;
+  }
+}
+

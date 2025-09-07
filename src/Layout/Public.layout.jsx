@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { Suspense, useState, useEffect } from "react";
 import Footer from "@/components/includes/Footer";
 import Header from "@/components/includes/Header";
 import Loading from "@/components/includes/Loading";
@@ -10,25 +10,28 @@ export const PublicLayout = () => {
   useEffect(() => {
     const timer = setTimeout(() => {
       setLoading(false);
-    }, 3800);
-
+    }, 500);
     return () => clearTimeout(timer);
   }, []);
 
-  if (loading) return <Loading />;
+  if (loading) {
+    return (
+        <div className="flex h-screen w-full items-center justify-center bg-[#0f1b34]">
+            <Loading />
+        </div>
+    );
+  }
 
   return (
-    <div className="flex flex-col min-h-screen">
-      {/* Header Section */}
+    <div className="flex min-h-screen flex-col bg-[#0f1b34] text-white">
       <Header />
-
-      {/* Main Content */}
-      <main className="flex-1 container mx-auto">
-        <Outlet />
+      <main className="flex-1 flex w-full items-center justify-center px-4">
+        <Suspense fallback={<Loading />}>
+            <Outlet />
+        </Suspense>
       </main>
-
-      {/* Footer Section */}
       <Footer />
     </div>
   );
 };
+
